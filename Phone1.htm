@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Number Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Phone Number Generator</h1>
+    <button id="generateButton">Generate</button>
+    <h2 id="phoneNumber"></h2>
+    <a id="callButton" href="#" style="display: none;">
+        <button>Call</button>
+    </a>
+
+    <script>
+        function generatePhoneNumber() {
+            // Generate a random phone number (this is just a random example, not a real phone number)
+            const areaCode = Math.floor(Math.random() * 900) + 100;  // 100-999
+            const centralOfficeCode = Math.floor(Math.random() * 900) + 100;  // 100-999
+            const lineNumber = Math.floor(Math.random() * 9000) + 1000;  // 1000-9999
+            const phoneNumber = `(${areaCode}) ${centralOfficeCode}-${lineNumber}`;
+
+            // Update the phone number on the page
+            document.getElementById('phoneNumber').textContent = phoneNumber;
+
+            // Make the call button visible and set its link to dial the phone number
+            const callButton = document.getElementById('callButton');
+            callButton.href = `tel:${phoneNumber.replace(/\D/g, '')}`; // Remove non-numeric characters for the tel: link
+            callButton.style.display = 'block';
+        }
+
+        document.getElementById('generateButton').addEventListener('click', generatePhoneNumber);
+    </script>
+</body>
+</html>
